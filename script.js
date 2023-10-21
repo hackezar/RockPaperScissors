@@ -1,13 +1,39 @@
-//How many games you would like to play?
-let gameLimit = 10000;
-//
-
 let playerChoice = "";
 let computerChoice = "";
 let gamesPlayed = 0;
 let gamesWon = 0;
 let gamesLost = 0;
 let gamesTied = 0;
+let username = '';
+let gameLimit = 0;
+
+
+
+
+//the script below is for the start menu
+let startBtn = document.querySelector('#startButton');
+startBtn.addEventListener('click', function() {
+    let startDiv = document.querySelector('#startMenu');
+    let nameIpt = document.querySelector('#nameInput');
+    let numGamesIpt = document.querySelector('#numberOfGames');
+    username=nameIpt.value;
+    gameLimit = numGamesIpt.value;
+    if ( username = )
+    startDiv.remove();
+
+    return;
+});
+console.log(username);
+console.log(gameLimit);
+
+
+
+//The script below is for the game
+
+//How many games you would like to play?
+//
+
+
 //Randomly select rock, paper, or scissors for the computer
 function getComputerChoice() {
     //Below will randomly select 0, 1, or 2
@@ -96,4 +122,7 @@ function game() {
             game();
         }
     }
+
+
+    
 }

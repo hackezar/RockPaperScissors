@@ -1,0 +1,54 @@
+
+
+html, body {
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    height: 100%;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#startMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+#numberOfGames {
+    display: inline;
+    margin: auto;
+    width: 35px;
+}
+
+#startButton {
+    margin: 20px;
+    display: inline-flex;
+    flex: 1;
+    justify-content: center;
+}
+
+#startDivNumGames {
+    display: flex;
+    margin: auto;
+    gap: 10px;
+    
+}
+
+#girlfriend {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    align-items: center;
+}
+
+#girlfriendPic {
+    height: 200px;
+    width: 200px;
+}
