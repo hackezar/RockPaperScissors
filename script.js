@@ -1,5 +1,5 @@
 //How many games you would like to play?
-let gameLimit = 5;
+let gameLimit = 10000;
 //
 
 let playerChoice = "";
@@ -66,6 +66,7 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
+//This function keeps track of the score for the number of games played
 function game() {
 
     getComputerChoice();
@@ -96,5 +97,3 @@ function game() {
         }
     }
 }
-
-game();
