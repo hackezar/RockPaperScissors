@@ -7,31 +7,47 @@ let gamesTied = 0;
 let username = '';
 let gameLimit = 0;
 
-
-
-
+let startDiv = document.querySelector('#startMenu');
+let nameIpt = document.querySelector('#nameInput');
+let numGamesIpt = document.querySelector('#numberOfGames');
+let playerName = document.querySelector("#playerName");
+const playerScore = document.querySelector("#playerScore");
+const computerScore = document.querySelector("#computerScore");
+const roundNumber = document.querySelector("#roundNumber");
+const gameDOM = document.querySelector("#gameDOM");
+const otherThanScoreboard = document.querySelector("#otherThanScoreboard");
+const results = document.querySelector("#results");
 //the script below is for the start menu
+
 let startBtn = document.querySelector('#startButton');
 startBtn.addEventListener('click', function() {
-    let startDiv = document.querySelector('#startMenu');
-    let nameIpt = document.querySelector('#nameInput');
-    let numGamesIpt = document.querySelector('#numberOfGames');
+
+    gamesPlayed = 0;
+    gamesWon = 0;
+    gamesLost = 0;
     username=nameIpt.value;
     gameLimit = numGamesIpt.value;
-    if ( username = )
-    startDiv.remove();
-
-    return;
+    if ( username =="") {
+        alert("Please Enter a your name");
+        return;
+    } else if (gameLimit == 0){
+        alert("Please enter how many games you would like to play.")
+        return;
+    }
+    startDiv.style.display = 'none';
+    playerName.textContent = username;
+    document.querySelector('#computerName').textContent = "Computer";
+    playerScore.textContent = `Wins: ${gamesWon}`;
+    computerScore.textContent = `Wins: ${gamesLost}`;
+    roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+    gameDOM.style.display = 'flex';
+    otherThanScoreboard.style.display = 'flex';
+    results.style.display="none";
+    return username, gameLimit;
 });
-console.log(username);
-console.log(gameLimit);
-
-
 
 //The script below is for the game
 
-//How many games you would like to play?
-//
 
 
 //Randomly select rock, paper, or scissors for the computer
@@ -55,74 +71,167 @@ function getComputerChoice() {
      }
      return computerChoice;
 }
-//get input from player to choose rock paper or scissors
-function getPlayerChoice() {
-    playerChoice = prompt("Make your pick! (Rock, Paper, or Scissors)");
-    playerChoice = playerChoice.toLowerCase();
 
-    if ( playerChoice == "rock" || playerChoice.charAt(0) == "r") {
+
+
+//get input from player to choose rock paper or scissors
+    const rockBtn = document.querySelector("#rockButton");
+    const paperBtn = document.querySelector("#paperButton");
+    const scissorsBtn = document.querySelector("#scissorsButton")
+
+    const playerChoiceDiv = document.querySelector("#userChoice");
+    const computerChoiceDiv = document.querySelector("#computerChoice");
+    const userPara = document.querySelector("#playerSelects");
+    const computerPara = document.querySelector("#computerSelects");
+
+    rockBtn.addEventListener('click', function() {
         playerChoice = "Rock";
-    } else if ( playerChoice == "paper" || playerChoice.charAt(0) == "p") {
+        userPara.textContent = `${username} chooses ${playerChoice}.`
+        getComputerChoice();
+        computerPara.textContent = `The Computer selects ${computerChoice}.`;
+        playRound(playerChoice, computerChoice);
+    });
+
+    paperBtn.addEventListener('click', function() {
         playerChoice = "Paper";
-    } else if ( playerChoice == "scissors" || playerChoice.charAt(0) == "s") {
+        userPara.textContent = `${username} chooses ${playerChoice}.`
+        getComputerChoice();
+        computerPara.textContent = `The Computer selects ${computerChoice}.`;
+        playRound(playerChoice, computerChoice);
+    });
+
+    scissorsBtn.addEventListener('click', function() {
         playerChoice = "Scissors";
-    } else {
-        alert("Error. You did not enter rock, paper, or scissors");
-        getPlayerChoice();
-    }
-    return playerChoice;
-}
+        userPara.textContent = `${username} chooses ${playerChoice}.`
+        getComputerChoice();
+        computerPara.textContent = `The Computer selects ${computerChoice}.`;
+        playRound(playerChoice, computerChoice);
+    });
+
+    
+
 
 //see who wins in the game
 function playRound(playerChoice, computerChoice) {
-    if ( playerChoice == computerChoice) {
-        return "Its a Tie!";
+    results.style.display = 'flex';
+    const decisionDiv = document.querySelector("#decisionDiv");
+    const decisionText = document.querySelector("#decisionText");
+    if ( playerChoice === computerChoice) {
+        decisionText.textContent = "Its a Tie!";
+        gamesPlayed++;
+        roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+        
+        if (gamesPlayed == gameLimit) {
+            gameOver(gamesWon, gamesLost);
+
+        }
     } else if (playerChoice == "Rock" && computerChoice == "Paper") {
-        return "You Lose! Paper covers Rock!";
+        decisionText.textContent = "You Lose! Paper covers Rock!";
+        gamesPlayed++;
+        gamesLost++;
+        roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+        computerScore.textContent = `Wins: ${gamesLost}`;
+
+        if (gamesPlayed == gameLimit) {
+            gameOver(gamesWon, gamesLost);
+
+        }
     } else if (playerChoice == "Rock" && computerChoice == "Scissors") {
-        return "You Win! Rock crushes Scissors!";
+        decisionText.textContent = "You Win! Rock crushes Scissors!";
+        gamesPlayed++;
+        gamesWon++;
+        roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+        playerScore.textContent = `Wins: ${gamesWon}`;
+
+        if (gamesPlayed == gameLimit) {
+            gameOver(gamesWon, gamesLost);
+
+        }
     } else if (playerChoice == "Paper" && computerChoice == "Rock") {
-        return "You Win! Paper covers Rock!";
+        decisionText.textContent = "You Win! Paper covers Rock!";
+        gamesPlayed++;
+        gamesWon++;
+        roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+        playerScore.textContent = `Wins: ${gamesWon}`;
+
+        if (gamesPlayed == gameLimit) {
+            gameOver(gamesWon, gamesLost);
+
+        }
     } else if ( playerChoice == "Paper" && computerChoice == "Scissors" ) {
-        return "You Lose! Scissors cuts Paper! Suck it!"
+        decisionText.textContent = "You Lose! Scissors cuts Paper! Suck it!"
+        gamesPlayed++;
+        gamesLost++;
+        roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+        computerScore.textContent = `Wins: ${gamesLost}`;
+
+        if (gamesPlayed == gameLimit) {
+            gameOver(gamesWon, gamesLost);
+
+        }
     } else if ( playerChoice == "Scissors" && computerChoice == "Paper") {
-        return "You Win! Scissors cuts Paper";
+        decisionText.textContent = "You Win! Scissors cuts Paper";
+        gamesPlayed++;
+        gamesWon++;
+        roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+        playerScore.textContent = `Wins: ${gamesWon}`;
+
+        if (gamesPlayed == gameLimit) {
+            gameOver(gamesWon, gamesLost);
+        }
+
     } else if ( playerChoice == "Scissors" && computerChoice == "Rock" ) {
-        return "You Lose! Rock smashes Scissors!";
+        decisionText.textContent = "You Lose! Rock smashes Scissors!";
+        gamesPlayed++;
+        gamesLost++;
+        roundNumber.textContent = `Round: ${gamesPlayed}/${gameLimit}`;
+        computerScore.textContent = `Wins: ${gamesLost}`;
+
+        if (gamesPlayed == gameLimit) {
+            gameOver(gamesWon, gamesLost);
+        }
+
     }
 }
 
-//This function keeps track of the score for the number of games played
-function game() {
+//Function for when the game ends
+function gameOver(gamesWon, gamesLost) {
+    const declareWinner = document.createElement('p');
+    const menuBtn = document.createElement('button')
+    const gameOverImg = document.createElement('img');
+    gameOverImg.setAttribute('id', 'gameOverImg');
+    menuBtn.setAttribute('id', 'menuBtn')
+    menuBtn.textContent='Main Menu';
+    menuBtn.addEventListener('click', () => {
+        startDiv.style.display='flex';
+        gameDOM.style.display='none';
+        declareWinner.remove();
+        menuBtn.remove();
+        gameOverImg.remove();
+    });
 
-    getComputerChoice();
-    getPlayerChoice();
-    console.log("The Computer Picks " + computerChoice);
+    document.body.appendChild(menuBtn);
 
-    console.log(playRound(playerChoice, computerChoice))
-    if ( playRound(playerChoice, computerChoice).charAt(4) == "L") {
-        gamesPlayed++;
-        gamesLost++;
-        console.log("Wins-Losses-Ties: " + gamesWon + "-" + gamesLost + "-" + gamesTied + " Games played: " + gamesPlayed);
-        if ( gamesPlayed < gameLimit ) {
-            game();
-        }
-    } else if ( playRound(playerChoice, computerChoice).charAt(4) == "W" ) {
-        gamesPlayed++;
-        gamesWon++;
-        console.log("Wins-Losses-Ties: " + gamesWon + "-" + gamesLost + "-" + gamesTied + " Games played: " + gamesPlayed);
-        if ( gamesPlayed < gameLimit ) {
-            game();
-        }
-    } else if ( playRound(playerChoice, computerChoice).charAt(6) == "T" ) {
-        gamesTied++;
-        gamesPlayed++;
-        console.log("Wins-Losses-Ties: " + gamesWon + "-" + gamesLost + "-" + gamesTied + " Games played: " + gamesPlayed);
-        if ( gamesPlayed < gameLimit ) {
-            game();
-        }
+
+    otherThanScoreboard.style.display = 'none';
+    if (gamesWon > gamesLost) {
+
+        declareWinner.textContent = "Congratulations! You Won! I am so proud of you!";
+        document.body.appendChild(declareWinner);
+        gameOverImg.setAttribute('src', 'pics/party.png')
+        document.body.appendChild(gameOverImg);
+
+    } else if (gamesWon < gamesLost) {
+        
+        declareWinner.textContent = "Sorry! You lost... to a computer...";
+        document.body.appendChild(declareWinner);
+        gameOverImg.setAttribute('src', 'pics/loser.png')
+        document.body.appendChild(gameOverImg);
+
+    } else if (gamesWon == gamesLost) {
+
+        declareWinner.textContent = "Ooph, close match! It's a draw!";
+        document.body.appendChild(declareWinner);
+
     }
-
-
-    
 }

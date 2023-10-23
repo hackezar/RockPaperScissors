@@ -20,18 +20,69 @@
         <button id="startButton">Start</Script:src></button>
 
         <div id="girlfriend">
-            <p>This is my beautiful girlfriend and our cats!</p>
+            <p>This game is dedicated to a pretty lady that puts up with all my bs. Love you!</p>
             <img id="girlfriendPic" src="pics/girlfriend.jpeg" alt="picture of my girlfriend" >
         </div>
 
     </div>
 
 
-   
+    <div id ="gameDOM">
+        <div id="scoreboard">
 
-    <div id="main">
+            <div id="playerScoreboard">
+                <p id="playerName"></p>
+                <p id="playerScore"></p>
+            </div>
+            
+            <div>
+                <p id="roundNumber"></p>
+            </div>
 
+            <div id="computerScoreboard">
+                <p id="computerName"></p>
+                <p id="computerScore"></p>
+            </div>
+
+        </div>
+
+        <div id="otherThanScoreboard">
+            
+            <p>Choose your fighter!</p>
+
+            <div id="playerChoices">
+                <div>
+                    <img src="pics/rock.jpeg" id="rockPic" alt="rock picture" class="pic">
+                    <button id="rockButton" class="playerChoiceButton">Rock</button>
+                </div>
+
+                <div>
+                    <img src="pics/paper.jpeg" id="paperPic" alt="paper picture" class="pic">
+                    <button id="paperButton" class="playerChoiceButton">Paper</button>
+                </div>
+
+                <div>
+                    <img src="pics/scissors.png" id="scissorsPic" alt="scissor picture" class="pic">
+                    <button id="scissorsButton" class="playerChoiceButton">Scissors</button>
+                </div>
+            </div>
+
+            
+        <div id="results">
+            <div id="userChoice">
+                <p id="playerSelects"></p>
+            </div>
+
+            <div id="computerChoice">
+                <p id="computerSelects"></p>
+            </div>
+
+            <div id="decisionDiv">
+                <p id="decisionText"></p>
+            </div>
+        </div>
     </div>
+
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
