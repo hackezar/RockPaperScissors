@@ -2,8 +2,11 @@
 
 html, body {
     background-color: #4158D0;
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
     height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -71,10 +74,12 @@ h1 {
 
 #playerChoices {
     display: flex;
+    flex-wrap: wrap;
     flex: 1;
     gap: 10px;
     justify-content: center;
-    width: 100%;
+    margin: 0 30px;
+
 }
 
 #playerChoices > div > img {
@@ -82,6 +87,7 @@ h1 {
     display: flex;
     flex: 1;
     margin-bottom: 5px;
+    height: 170px;
 }
 
 #playerChoices > div{
@@ -91,14 +97,18 @@ h1 {
 }
 
 #playerChoices > div > button {
-    background-color: azure;
+    background-color: #C850C0;
     border-radius: 10px;
+    border-width: 3px;
 }
 
 #scoreboard {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
+    display: inline-flex;
+    justify-content: space-evenly;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    height: 100px;
 }
 
 #gameDOM {
@@ -122,6 +132,8 @@ h1 {
     display: flex;
     flex: 1;
     flex-direction: column;
+    margin: 6px;
+    color: #4158D0
 }
 
 #computerScoreboard {
@@ -155,4 +167,31 @@ h1 {
 #roundNumber {
     font-size: 30px;
     font-style: italic;
+}
+
+
+#results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#declareWinnerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+#declareWinnerDiv > button {
+    height: 40px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: #FFCC70;
+    font-weight: bolder;
+}
+
+#declareWinnerDiv > img {
+    height: 400px;
 }

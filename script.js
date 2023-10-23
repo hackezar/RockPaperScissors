@@ -196,42 +196,58 @@ function playRound(playerChoice, computerChoice) {
 
 //Function for when the game ends
 function gameOver(gamesWon, gamesLost) {
+    const declareWinnerDiv = document.createElement('div');
     const declareWinner = document.createElement('p');
     const menuBtn = document.createElement('button')
     const gameOverImg = document.createElement('img');
+    declareWinnerDiv.setAttribute('id', 'declareWinnerDiv');
     gameOverImg.setAttribute('id', 'gameOverImg');
     menuBtn.setAttribute('id', 'menuBtn')
     menuBtn.textContent='Main Menu';
     menuBtn.addEventListener('click', () => {
         startDiv.style.display='flex';
         gameDOM.style.display='none';
-        declareWinner.remove();
-        menuBtn.remove();
-        gameOverImg.remove();
+        declareWinnerDiv.remove();
     });
 
-    document.body.appendChild(menuBtn);
+
 
 
     otherThanScoreboard.style.display = 'none';
     if (gamesWon > gamesLost) {
 
-        declareWinner.textContent = "Congratulations! You Won! I am so proud of you!";
-        document.body.appendChild(declareWinner);
+
         gameOverImg.setAttribute('src', 'pics/party.png')
-        document.body.appendChild(gameOverImg);
+        declareWinnerDiv.appendChild(gameOverImg);
+
+        declareWinner.textContent = "Congratulations! You Won! It's time to celebrate!";
+        declareWinnerDiv.appendChild(declareWinner);
+
+        declareWinnerDiv.appendChild(menuBtn);
+        document.body.appendChild(declareWinnerDiv);
+
 
     } else if (gamesWon < gamesLost) {
         
-        declareWinner.textContent = "Sorry! You lost... to a computer...";
-        document.body.appendChild(declareWinner);
         gameOverImg.setAttribute('src', 'pics/loser.png')
-        document.body.appendChild(gameOverImg);
+        declareWinnerDiv.appendChild(gameOverImg);
+
+        declareWinner.textContent = "Sorry! You lost... to a computer...";
+        declareWinnerDiv.appendChild(declareWinner);
+
+        declareWinnerDiv.appendChild(menuBtn);
+        document.body.appendChild(declareWinnerDiv);
+
+
 
     } else if (gamesWon == gamesLost) {
 
-        declareWinner.textContent = "Ooph, close match! It's a draw!";
-        document.body.appendChild(declareWinner);
+        declareWinner.textContent = "Wow, close match! It's a draw!";
+        declareWinnerDiv.appendChild(declareWinner);
+
+        declareWinnerDiv.appendChild(menuBtn);
+        document.body.appendChild(declareWinnerDiv);
+
 
     }
 }
